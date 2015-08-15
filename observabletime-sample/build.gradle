@@ -1,16 +1,16 @@
-apply plugin: 'com.android.library'
+apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    buildToolsVersion "23.0.0 rc3"
 
     defaultConfig {
+        applicationId "com.github.simonpercic.observabletime.sample"
         minSdkVersion 14
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -20,6 +20,9 @@ android {
 }
 
 dependencies {
-    compile 'com.squareup.retrofit:retrofit:1.9.0'
-    compile 'io.reactivex:rxjava:1.0.13'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:22.2.1'
+
+    compile 'io.reactivex:rxandroid:1.0.1'
+    compile project(':observabletime')
 }

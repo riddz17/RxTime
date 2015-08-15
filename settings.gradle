@@ -1,1 +1,1 @@
-include ':observabletime'
+include ':observabletime', ':observabletime-sample'
