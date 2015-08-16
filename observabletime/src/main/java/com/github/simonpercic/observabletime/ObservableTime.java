@@ -4,16 +4,12 @@ import android.os.SystemClock;
 
 import com.github.simonpercic.observabletime.data.api.TimeApiService;
 import com.github.simonpercic.observabletime.data.api.model.response.TimeResponse;
-import com.github.simonpercic.observabletime.data.api.typeadapter.TimeResponseDeserializer;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.github.simonpercic.observabletime.di.DaggerLibraryComponent;
+import com.github.simonpercic.observabletime.di.LibraryModule;
 
-import retrofit.Endpoint;
-import retrofit.Endpoints;
-import retrofit.RequestInterceptor;
-import retrofit.RestAdapter;
-import retrofit.RestAdapter.Builder;
-import retrofit.converter.GsonConverter;
+import javax.inject.Inject;
+
+import dagger.Lazy;
 import rx.Observable;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
@@ -23,7 +19,16 @@ import rx.schedulers.Schedulers;
  */
 public class ObservableTime {
 
+    @Inject Lazy<TimeApiService> timeApiService;
+
     private long baseUtcTime = -1L;
+
+    public ObservableTime() {
+        DaggerLibraryComponent.builder()
+                .libraryModule(new LibraryModule())
+                .build()
+                .inject(this);
+    }
 
     public Observable<Long> currentTime() {
         if (baseUtcTime > 0) {
@@ -43,30 +48,7 @@ public class ObservableTime {
     }
 
     private Observable<Long> getNetworkUtcTimeObservable() {
-        Gson gson = new GsonBuilder()
-                .registerTypeAdapter(TimeResponse.class, new TimeResponseDeserializer())
-                .create();
-
-        GsonConverter gsonConverter = new GsonConverter(gson);
-
-        Endpoint endpoint = Endpoints.newFixedEndpoint("http://www.timeapi.org/");
-
-        RequestInterceptor requestInterceptor = new RequestInterceptor() {
-            @Override
-            public void intercept(RequestFacade request) {
-                request.addHeader("Accept", "application/json");
-            }
-        };
-
-        RestAdapter restAdapter = new Builder()
-                .setEndpoint(endpoint)
-                .setRequestInterceptor(requestInterceptor)
-                .setConverter(gsonConverter)
-                .build();
-
-        TimeApiService timeApiService = restAdapter.create(TimeApiService.class);
-
-        return timeApiService.getUtcNow().map(new Func1<TimeResponse, Long>() {
+        return timeApiService.get().getUtcNow().map(new Func1<TimeResponse, Long>() {
             @Override public Long call(TimeResponse timeResponse) {
                 return timeResponse.getTimeMillis();
             }
