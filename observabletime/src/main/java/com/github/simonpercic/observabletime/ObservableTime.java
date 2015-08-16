@@ -11,6 +11,7 @@ import javax.inject.Inject;
 
 import dagger.Lazy;
 import rx.Observable;
+import rx.functions.Func0;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
@@ -31,16 +32,20 @@ public class ObservableTime {
     }
 
     public Observable<Long> currentTime() {
-        if (baseUtcTime > 0) {
-            return Observable.just(baseUtcTime + getDeviceUptimeMillis());
-        }
+        return Observable.defer(new Func0<Observable<Long>>() {
+            @Override public Observable<Long> call() {
+                if (baseUtcTime > 0) {
+                    return Observable.just(baseUtcTime + getDeviceUptimeMillis());
+                }
 
-        return getNetworkUtcTimeObservable().map(new Func1<Long, Long>() {
-            @Override public Long call(Long time) {
-                baseUtcTime = time - getDeviceUptimeMillis();
-                return time;
+                return getNetworkUtcTimeObservable().map(new Func1<Long, Long>() {
+                    @Override public Long call(Long time) {
+                        baseUtcTime = time - getDeviceUptimeMillis();
+                        return time;
+                    }
+                }).subscribeOn(Schedulers.io());
             }
-        }).subscribeOn(Schedulers.io());
+        });
     }
 
     private static long getDeviceUptimeMillis() {
