@@ -1,11 +1,10 @@
 package com.github.simonpercic.rxtime;
 
-import android.os.SystemClock;
-
 import com.github.simonpercic.rxtime.data.api.TimeApiService;
 import com.github.simonpercic.rxtime.data.api.model.response.TimeResponse;
 import com.github.simonpercic.rxtime.di.DaggerLibraryComponent;
 import com.github.simonpercic.rxtime.di.LibraryModule;
+import com.github.simonpercic.rxtime.utils.AndroidSystemClock;
 
 import javax.inject.Inject;
 
@@ -49,10 +48,10 @@ public class RxTime {
     }
 
     private static long getDeviceUptimeMillis() {
-        return SystemClock.elapsedRealtime();
+        return AndroidSystemClock.getDeviceUptimeMillis();
     }
 
-    private Observable<Long> getNetworkUtcTimeObservable() {
+    Observable<Long> getNetworkUtcTimeObservable() {
         return timeApiService.get().getUtcNow().map(new Func1<TimeResponse, Long>() {
             @Override public Long call(TimeResponse timeResponse) {
                 return timeResponse.getTimeMillis();
