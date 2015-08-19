@@ -19,6 +19,8 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -41,4 +43,10 @@ dependencies {
     // Compile time dependencies
     apt 'com.google.dagger:dagger-compiler:2.0.1'
     provided 'javax.annotation:javax.annotation-api:1.2'
+
+    // Android test dependencies
+    androidTestCompile 'org.mockito:mockito-core:1.9.5'
+    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
+    androidTestCompile 'com.android.support.test:runner:0.2'
+    androidTestCompile 'com.android.support.test:rules:0.2'
 }
