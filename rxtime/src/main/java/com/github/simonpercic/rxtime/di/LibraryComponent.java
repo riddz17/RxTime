@@ -5,7 +5,9 @@ import com.github.simonpercic.rxtime.RxTime;
 import dagger.Component;
 
 /**
- * Created by Simon Percic on 15/08/15.
+ * Dagger library component.
+ *
+ * @author Simon Percic <a href="https://github.com/simonpercic">https://github.com/simonpercic</a>
  */
 @Component(
         modules = LibraryModule.class

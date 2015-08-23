@@ -27,7 +27,9 @@ import static org.mockito.Mockito.when;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 
 /**
- * Created by Simon Percic on 19/08/15.
+ * RxTime Unit tests.
+ *
+ * @author Simon Percic <a href="https://github.com/simonpercic">https://github.com/simonpercic</a>
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(AndroidSystemClock.class)

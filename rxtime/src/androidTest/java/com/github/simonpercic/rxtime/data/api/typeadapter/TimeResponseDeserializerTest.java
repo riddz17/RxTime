@@ -17,7 +17,9 @@ import java.util.TimeZone;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by Simon Percic on 19/08/15.
+ * TimeResponseDeserializer Instrumentation tests.
+ *
+ * @author Simon Percic <a href="https://github.com/simonpercic">https://github.com/simonpercic</a>
  */
 public class TimeResponseDeserializerTest {
 

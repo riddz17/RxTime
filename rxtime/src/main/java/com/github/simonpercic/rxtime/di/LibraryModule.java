@@ -17,7 +17,9 @@ import retrofit.converter.Converter;
 import retrofit.converter.GsonConverter;
 
 /**
- * Created by Simon Percic on 16/08/15.
+ * Dagger library module.
+ *
+ * @author Simon Percic <a href="https://github.com/simonpercic">https://github.com/simonpercic</a>
  */
 @Module
 public class LibraryModule {

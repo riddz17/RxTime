@@ -1,10 +1,13 @@
 package com.github.simonpercic.rxtime.data.api.model.response;
 
 /**
- * Created by Simon Percic on 14/08/15.
+ * Time API Response.
+ *
+ * @author Simon Percic <a href="https://github.com/simonpercic">https://github.com/simonpercic</a>
  */
 public class TimeResponse {
 
+    // time in milliseconds
     private final long timeMillis;
 
     public TimeResponse(long timeMillis) {

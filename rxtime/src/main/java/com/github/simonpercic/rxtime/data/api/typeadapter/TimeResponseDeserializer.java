@@ -15,7 +15,9 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * Created by Simon Percic on 15/08/15.
+ * Time API Response Json Deserializer.
+ *
+ * @author Simon Percic <a href="https://github.com/simonpercic">https://github.com/simonpercic</a>
  */
 public class TimeResponseDeserializer implements JsonDeserializer<TimeResponse> {
 

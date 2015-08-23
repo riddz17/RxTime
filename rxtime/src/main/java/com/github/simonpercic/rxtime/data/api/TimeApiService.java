@@ -6,9 +6,16 @@ import retrofit.http.GET;
 import rx.Observable;
 
 /**
- * Created by Simon Percic on 14/08/15.
+ * Time API Retrofit Service.
+ *
+ * @author Simon Percic <a href="https://github.com/simonpercic">https://github.com/simonpercic</a>
  */
 public interface TimeApiService {
 
+    /**
+     * Get current Utc time.
+     *
+     * @return Deserialized Time API Response
+     */
     @GET("/utc/now") Observable<TimeResponse> getUtcNow();
 }
