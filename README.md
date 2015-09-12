@@ -45,7 +45,11 @@ rxTime.currentTime()
     .subscribe(time -> { // use time });
 ```
 
-Pro-tip: use [Dagger](https://github.com/google/dagger) to hold a single instance of RxTime.
+### Singleton Pro-tip
+Use [Dagger](https://github.com/google/dagger) to hold a single instance of RxTime.
+
+## Scheduler
+The Observable returned by RxTime runs on a background thread by default (using ```.subscribeOn(Schedulers.io())```).
 
 ## Sample application
 See the included sample application to see a practical example of usage.
