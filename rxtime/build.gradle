@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'si.dlabs.soter'
 
 buildscript {
     repositories {
@@ -55,4 +56,24 @@ dependencies {
     androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
     androidTestCompile 'com.android.support.test:runner:0.2'
     androidTestCompile 'com.android.support.test:rules:0.2'
+
+    // Static code rules
+    checkstyleRules files('../config/soter/checkstyle-0.3.xml')
+    findbugsRules files('../config/soter/findbugs-0.1.xml')
+    pmdRules files('../config/soter/pmd-0.1.xml')
+}
+
+soter {
+    checkstyle {
+        enabled true
+    }
+
+    findbugs {
+        enabled true
+        reportLevel "high"
+    }
+
+    pmd {
+        enabled true
+    }
 }
