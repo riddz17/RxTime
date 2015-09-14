@@ -17,6 +17,7 @@ android:
   - extra-android-m2repository
 
 before_install:
+  - ./config/ci/create-emulator
   - echo "disablePreDex" >> gradle.properties
 
 before_script:
