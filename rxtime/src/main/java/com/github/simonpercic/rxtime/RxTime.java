@@ -16,15 +16,15 @@ import rx.schedulers.Schedulers;
 
 /**
  * RxTime.
- * <p/>
+ * <p>
  * Useful for getting current UTC time independently of device timezone and time.
- * <p/>
  * On first use, UTC time is fetched from API at http://www.timeapi.org/utc/now and stored as a base value.
+ * <p>
  * On further requests, UTC time is calculated from the base value and device uptime, to save on network calls.
- * <p/>
+ * <p>
  * As a result, the UTC time is always correct, independently of the timezone set on device, even if the timezone
  * (or time) is changed on the device after (or before) RxTime is used.
- * <p/>
+ * <p>
  * Use as a singleton in your app (pro-tip: use Dagger).
  *
  * @author Simon Percic <a href="https://github.com/simonpercic">https://github.com/simonpercic</a>
