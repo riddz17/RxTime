@@ -3,6 +3,7 @@
 A very simple reactive Android library to obtain the current UTC time from the internet.
 
 [![Build Status](https://api.travis-ci.org/simonpercic/RxTime.svg?branch=master)](https://travis-ci.org/simonpercic/RxTime)
+[ ![Download](https://api.bintray.com/packages/simonpercic/maven/rxtime/images/download.svg) ](https://bintray.com/simonpercic/maven/rxtime/_latestVersion)
 
 ### What does it do?
 It fetches the current UTC time from [www.timeapi.org](http://www.timeapi.org/) using Retrofit.
