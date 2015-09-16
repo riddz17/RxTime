@@ -21,7 +21,7 @@ As a result, the UTC time is always correct, independently of the timezone set o
 
 Add using Gradle:
 ```groovy
-compile 'TODO'
+compile 'com.github.simonpercic:rxtime:1.0.0'
 ```
 
 Create a **singleton** instance of RxTime and use it:
